@@ -1,15 +1,24 @@
-import "./App.css";
-import { createTheme, ThemeProvider } from "@mui/material";
+import './App.css';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { Container } from '@mui/material';
+import Wheather from './components/Weather.jsx';
+import LangButton from './components/LangButton';
 
 const theme = createTheme({
   typography: {
-    fontFamily: ["IBM"],
+    fontFamily: ['IBM'],
   },
 });
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App"></div>
+      <div dir="rtl" className="App">
+        <Container maxWidth="sm">
+          <Wheather />
+          <br />
+          <LangButton />
+        </Container>
+      </div>
     </ThemeProvider>
   );
 }

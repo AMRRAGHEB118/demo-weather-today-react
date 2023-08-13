@@ -1,6 +1,14 @@
 .App {
+  box-sizing:border-box;
+  background-color: #3498eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-family: "IBM";
+  font-family: 'IBM';
+  padding: 20px;
 }
 
 .App-logo {
@@ -40,42 +48,42 @@
 
 @font-face {
   font-family: IBM;
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-Thin.ttf");
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-Thin.ttf');
   font-weight: 100;
 }
 
 @font-face {
-  font-family: "IBM";
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-ExtraLight.ttf");
+  font-family: 'IBM';
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-ExtraLight.ttf');
   font-weight: 200;
 }
 
 @font-face {
-  font-family: "IBM";
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-Light.ttf");
+  font-family: 'IBM';
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-Light.ttf');
   font-weight: 300;
 }
 
 @font-face {
-  font-family: "IBM";
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-Regular.ttf");
+  font-family: 'IBM';
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-Regular.ttf');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "IBM";
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-Medium.ttf");
+  font-family: 'IBM';
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-Medium.ttf');
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "IBM";
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-SemiBold.ttf");
+  font-family: 'IBM';
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-SemiBold.ttf');
   font-weight: 600;
 }
 
 @font-face {
-  font-family: "IBM";
-  src: url("../public/fonts/IBM/IBMPlexSansArabic-Bold.ttf");
+  font-family: 'IBM';
+  src: url('../public/fonts/IBM/IBMPlexSansArabic-Bold.ttf');
   font-weight: 700;
 }
