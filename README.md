@@ -1,1 +1,8 @@
-echo "# demo-weather-today-react" >> README.md
+# demo-weather-today-react
+
+
+### Starting the project
+
+`
+npm run start
+`
