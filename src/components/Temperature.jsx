@@ -18,12 +18,12 @@ function Temperature({temp}) {
           justifyContent: 'space-around',
         }}
       >
-        <Typography variant="h1">{temp}</Typography>
-        {/* TODO : Image TEAMP */}
+        <Typography variant="h1">{temp.number}</Typography>
+        <img src={temp.icon} alt={temp.description}></img>
       </Box>
-      <Typography variant="h6">Broken clouds</Typography>
+      <Typography variant="h6">{temp.description}</Typography>
       <br />
-      <Typography variant="h7">الصغري: 38 | الكبري: 38</Typography>
+      <Typography variant="h7">الصغري: {temp.min} | الكبري: {temp.max}</Typography>
     </Box>
   );
 }

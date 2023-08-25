@@ -16,8 +16,14 @@ const theme = createTheme({
 let cencel = null;
 
 function App() {
-  const [temp, setTemp] = useState(null);
-  const {baseURL} = axios.defaults
+  const [temp, setTemp] = useState({
+    number: null,
+    description: '',
+    max: null,
+    min: null,
+    icon: null,
+  });
+  const { baseURL } = axios.defaults;
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -30,7 +36,17 @@ function App() {
           }
         );
         const currentTemp = Math.round(res.data.main.temp - 272.15);
-        setTemp(currentTemp);
+        const maxTemp = Math.round(res.data.main.temp_max - 272.15);
+        const minTemp = Math.round(res.data.main.temp_min - 272.15);
+        const description = res.data.weather[0].description;
+        const iconTemp = res.data.weather[0].icon;
+        setTemp({
+          number: currentTemp,
+          description: description,
+          max: maxTemp,
+          min: minTemp,
+          icon: `https://openweathermap.org/img/wn/${iconTemp}@2x.png`,
+        });
       } catch (e) {
         console.log(e);
       }
