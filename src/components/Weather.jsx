@@ -4,7 +4,7 @@ import Date from './Date';
 import Temperature from './Temperature';
 import CloudImage from './CloudImage';
 
-function Weather({temp}) {
+function Weather({dateAndtime, temp}) {
   return (
     <Card
       sx={{
@@ -23,7 +23,7 @@ function Weather({temp}) {
         }}
       >
         <City />
-        <Date />
+        <Date dateAndtime={dateAndtime}/>
       </CardContent>
       <hr />
       <CardContent
