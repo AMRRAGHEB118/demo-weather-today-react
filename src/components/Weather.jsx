@@ -4,7 +4,7 @@ import Date from './Date';
 import Temperature from './Temperature';
 import CloudImage from './CloudImage';
 
-function Weather() {
+function Weather({temp}) {
   return (
     <Card
       sx={{
@@ -34,7 +34,7 @@ function Weather() {
           justifyContent: 'space-around',
         }}
       >
-        <Temperature />
+        <Temperature temp={temp}/>
         <Box
           sx={{
             width: 250,

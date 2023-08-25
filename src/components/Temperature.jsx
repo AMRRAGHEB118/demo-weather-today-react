@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-function Temperature() {
+function Temperature({temp}) {
   return (
     <Box
       sx={{
@@ -18,7 +18,7 @@ function Temperature() {
           justifyContent: 'space-around',
         }}
       >
-        <Typography variant="h1">38</Typography>
+        <Typography variant="h1">{temp}</Typography>
         {/* TODO : Image TEAMP */}
       </Box>
       <Typography variant="h6">Broken clouds</Typography>
