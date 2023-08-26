@@ -1,8 +1,15 @@
 import { Button } from '@mui/material';
 
-function LangButton() {
+function LangButton({lang, setLang}) {
   return (
     <Button
+    onClick={() => {
+      if(lang === "ar"){
+        setLang("en")
+      }else {
+        setLang("ar")
+      }
+    }}
       sx={{
         color: 'white',
         '&:hover': {
@@ -12,7 +19,7 @@ function LangButton() {
         right: 230,
       }}
     >
-      أنجليزي
+      {lang === "ar" ? "أنجليزي": "arabic"}
     </Button>
   );
 }

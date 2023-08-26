@@ -8,6 +8,7 @@ import axios from 'axios';
 import config from './config';
 import moment from 'moment';
 import 'moment/min/locales.min';
+import { useTranslation } from 'react-i18next';
 
 const theme = createTheme({
   typography: {
@@ -16,9 +17,9 @@ const theme = createTheme({
 });
 
 let cencel = null;
-moment.locale('ar');
 
 function App() {
+  const [lang, setLang] = useState('en');
   const [temp, setTemp] = useState({
     number: null,
     description: '',
@@ -28,8 +29,18 @@ function App() {
   });
   const [dateAndtime, setDateAndtime] = useState('');
   const { baseURL } = axios.defaults;
+  const { i18n } = useTranslation();
+
   useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [i18n, lang]);
+
+  useEffect(() => {
+    moment.locale(lang);
     setDateAndtime(moment().format('Do MMMM YYYY'));
+  }, [lang]);
+
+  useEffect(() => {
     axios
       .get(`${baseURL}?lat=30.033333&lon=31.233334&appid=${config.apiKey}`, {
         cancelToken: new axios.CancelToken((c) => {
@@ -64,7 +75,7 @@ function App() {
         <Container maxWidth="sm">
           <Wheather dateAndtime={dateAndtime} temp={temp} />
           <br />
-          <LangButton />
+          <LangButton lang={lang} setLang={setLang} />
         </Container>
       </div>
     </ThemeProvider>

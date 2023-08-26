@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 function Temperature({temp}) {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -21,9 +24,9 @@ function Temperature({temp}) {
         <Typography variant="h1">{temp.number}</Typography>
         <img src={temp.icon} alt={temp.description}></img>
       </Box>
-      <Typography variant="h6">{temp.description}</Typography>
+      <Typography variant="h6">{t(temp.description)}</Typography>
       <br />
-      <Typography variant="h7">الصغري: {temp.min} | الكبري: {temp.max}</Typography>
+      <Typography variant="h7">{t('min')}: {temp.min} | {t('max')}: {temp.max}</Typography>
     </Box>
   );
 }
