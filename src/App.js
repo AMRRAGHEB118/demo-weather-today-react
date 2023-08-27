@@ -71,7 +71,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div dir="rtl" className="App">
+      <div dir={lang === 'ar' ? 'rtl' : 'ltr'} className="App">
         <Container maxWidth="sm">
           <Wheather dateAndtime={dateAndtime} temp={temp} />
           <br />
