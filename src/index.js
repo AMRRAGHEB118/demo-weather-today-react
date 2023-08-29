@@ -6,13 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import config from './config';
 import axios from 'axios';
 import './i18n';
+import store from './store';
+import { Provider } from 'react-redux';
 
 axios.defaults.baseURL = config.baseUrl;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

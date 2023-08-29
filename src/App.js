@@ -4,11 +4,11 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import { Container } from '@mui/material';
 import Wheather from './components/Weather.jsx';
 import LangButton from './components/LangButton';
-import axios from 'axios';
-import config from './config';
 import moment from 'moment';
 import 'moment/min/locales.min';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { fetchWeather } from './weatherApiSlice';
 
 const theme = createTheme({
   typography: {
@@ -16,64 +16,28 @@ const theme = createTheme({
   },
 });
 
-let cencel = null;
-
 function App() {
+  const dispatch = useDispatch();
   const [lang, setLang] = useState('en');
-  const [temp, setTemp] = useState({
-    number: null,
-    description: '',
-    max: null,
-    min: null,
-    icon: null,
-  });
   const [dateAndtime, setDateAndtime] = useState('');
-  const { baseURL } = axios.defaults;
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    i18n.changeLanguage(lang);
-  }, [i18n, lang]);
+    dispatch(fetchWeather());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
+    i18n.changeLanguage(lang);
     moment.locale(lang);
     setDateAndtime(moment().format('Do MMMM YYYY'));
-  }, [lang]);
-
-  useEffect(() => {
-    axios
-      .get(`${baseURL}?lat=30.033333&lon=31.233334&appid=${config.apiKey}`, {
-        cancelToken: new axios.CancelToken((c) => {
-          cencel = c;
-        }),
-      })
-      .then((res) => {
-        const currentTemp = Math.round(res.data.main.temp - 272.15);
-        const maxTemp = Math.round(res.data.main.temp_max - 272.15);
-        const minTemp = Math.round(res.data.main.temp_min - 272.15);
-        const description = res.data.weather[0].description;
-        const iconTemp = res.data.weather[0].icon;
-        setTemp({
-          number: currentTemp,
-          description: description,
-          max: maxTemp,
-          min: minTemp,
-          icon: `https://openweathermap.org/img/wn/${iconTemp}@2x.png`,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    return () => {
-      cencel();
-    };
-  }, []);
+  }, [i18n, lang]);
 
   return (
     <ThemeProvider theme={theme}>
       <div dir={lang === 'ar' ? 'rtl' : 'ltr'} className="App">
         <Container maxWidth="sm">
-          <Wheather dateAndtime={dateAndtime} temp={temp} />
+          <Wheather dateAndtime={dateAndtime} />
           <br />
           <LangButton lang={lang} setLang={setLang} />
         </Container>

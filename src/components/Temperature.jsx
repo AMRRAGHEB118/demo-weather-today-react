@@ -1,9 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector } from 'react-redux';
 
-function Temperature({temp}) {
+function Temperature() {
   const { t } = useTranslation();
-
+  const weather = useSelector((state) => {
+    return state.weather.weather
+  }) 
+  const isLoading = useSelector((state) => {
+    return state.weather.isLoading
+  }) 
   return (
     <Box
       sx={{
@@ -18,15 +25,16 @@ function Temperature({temp}) {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'space-around',
+          justifyContent: isLoading ? 'center' :'space-around',
         }}
       >
-        <Typography variant="h1">{temp.number}</Typography>
-        <img src={temp.icon} alt={temp.description}></img>
+        {isLoading ? <CircularProgress sx={{color:'white'}}/> : null}
+        <Typography variant="h1">{weather.number}</Typography>
+        <img src={weather.icon} alt={weather.description}></img>
       </Box>
-      <Typography variant="h6">{t(temp.description)}</Typography>
+      <Typography variant="h6">{t(weather.description)}</Typography>
       <br />
-      <Typography variant="h7">{t('min')}: {temp.min} | {t('max')}: {temp.max}</Typography>
+      <Typography variant="h7">{t('min')}: {weather.min} | {t('max')}: {weather.max}</Typography>
     </Box>
   );
 }
